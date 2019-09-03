@@ -30,13 +30,10 @@ class App extends React.Component {
     })
   }
 
-  removeItem(id) {  
-    const deleteFunc = () => {
-      this.setState({
-        items : this.state.items.filter((item) => id !== item.id)
-      })
-    }
-    return deleteFunc
+  removeItem = (id) => () => {  
+    this.setState({
+      items : this.state.items.filter((item) => id !== item.id)
+    })
   }
 
   render() {
