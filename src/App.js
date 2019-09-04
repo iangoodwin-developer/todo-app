@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props)
     this.listElement = React.createRef();
     this.state = {
-      items : [],    
+      items : [],
     }
 
     this.addItem = this.addItem.bind(this)
@@ -60,11 +60,25 @@ class App extends React.Component {
     })
   }
 
+  titleChange = (title) => () => {  
+    this.setState({
+      title
+    })
+  }
+
+  stepsChange = (steps) => () => {  
+    this.setState({
+      steps
+    })
+  }
+
   render() {
     return (
       <div className="container">
         <Header />
-        <Create onItemCreation={this.addItem} title="Untitled Task"/>
+        <Create onItemCreation={this.addItem}
+                title="New Unnamed Task"
+                steps="4"/>
         <List onDelete={this.removeItem}
               onComplete={this.completeItem}
               onIncrement={this.incrementItem}

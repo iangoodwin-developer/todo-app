@@ -5,7 +5,7 @@ class Create extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      steps : 4,
+      steps : this.props.steps,
       title : this.props.title
     }
     this.handleTitleChange = this.handleTitleChange.bind(this)
@@ -13,15 +13,23 @@ class Create extends React.Component {
     this.handleStepsChange = this.handleStepsChange.bind(this)
   }
 
-  handleTitleChange(e) {
+  handleTitleChange = (e) => {
     this.setState({title: e.currentTarget.value})
   }
 
   handleStepsChange = (e) => {
-    if (e.currentTarget.value !== null && e.currentTarget.value !== "") {
-      this.setState({steps: parseInt(e.currentTarget.value, 10)})
-    }
+    this.setState({steps: parseInt(e.currentTarget.value, 10)})
   }
+
+/*  handleTitleChange(e) {
+    this.props.onTitleChange(e.currentTarget.value)
+  }
+
+  handleStepsChange(e) {
+    if (e.currentTarget.value !== null && e.currentTarget.value !== "") {
+      this.props.onStepsChange(parseInt(e.currentTarget.value, 10))
+    }
+  }*/
 
   handleSubmit(e) {
     e.preventDefault()
@@ -46,7 +54,7 @@ class Create extends React.Component {
         <div className="form-group row">  
           <label htmlFor="steps" className="col-sm-2 col-form-label">Steps</label> 
           <div className="col-sm-10">      
-            <input className="form-control mt-1" 
+            <select className="form-control mt-1" 
                   id="steps"
                   onChange={this.handleStepsChange} 
                   name="steps" 
@@ -54,7 +62,12 @@ class Create extends React.Component {
                   min={0} 
                   max={4} 
                   value={this.state.steps} 
-                  placeholder="steps" />
+                  placeholder="steps">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
           </div>
         </div> 
         <button type="submit" 
