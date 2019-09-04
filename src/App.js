@@ -60,18 +60,6 @@ class App extends React.Component {
     })
   }
 
-  titleChange = (title) => () => {  
-    this.setState({
-      title
-    })
-  }
-
-  stepsChange = (steps) => () => {  
-    this.setState({
-      steps
-    })
-  }
-
   render() {
     return (
       <div className="container">
