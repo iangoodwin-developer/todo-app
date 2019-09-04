@@ -3,15 +3,29 @@ import Item from './Item';
 
 class List extends React.Component{
 
+
+	listElement(items) {
+		return (
+			<ul className="list-group">
+				{items}
+			</ul>
+		)
+	}
+
 	render() {
 		const items = this.props.items.map((item, index) => 
 			<Item key={index} 
 					id={item.id} 
+					step={item.step} 
+					steps={item.steps} 
+					completed={item.completed} 
 					title={item.title} 
-					onItemDelete={this.props.onItemDelete(item.id)}		
+					onDelete={this.props.onDelete(item.id)}
+					onComplete={this.props.onComplete(item.id)}
+					onIncrement={this.props.onIncrement(item.id)}	
 			/>
 		)
-		return <table className="table table-dark table-striped"><tbody>{items}</tbody></table>
+		return this.listElement(items)
 	}  
   
 }

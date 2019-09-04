@@ -18,6 +18,28 @@ class App extends React.Component {
 
     this.addItem = this.addItem.bind(this)
     this.removeItem = this.removeItem.bind(this)
+    this.completeItem = this.completeItem.bind(this)
+  }
+
+  completeItem = (id) => () => {
+    this.setState (prevState => ({
+      items : prevState.items.map(
+        item => item.id === id ? {...item, completed: true } : item
+      )
+    }))
+  }
+
+  incrementItem = (id) => () => {
+    const stepValue = this.state.items.find(item => item.id ===id).step
+    const stepsValue = this.state.items.find(item => item.id ===id).steps
+    if (stepValue < stepsValue)
+    {
+      this.setState (prevState => ({
+        items : prevState.items.map(
+          item => item.id === id ? {...item, step: stepValue + 1 } : item
+        )
+      }))
+    }
   }
 
   addItem(title, steps) {
@@ -25,6 +47,8 @@ class App extends React.Component {
       items : this.state.items.concat({
         completed : false,
         id : uuid(),
+        step : 0,
+        steps,
         title
       })
     })
@@ -41,7 +65,10 @@ class App extends React.Component {
       <div className="container">
         <Header />
         <Create onItemCreation={this.addItem} title="Untitled Task"/>
-        <List onItemDelete={this.removeItem} items={this.state.items}/>
+        <List onDelete={this.removeItem}
+              onComplete={this.completeItem}
+              onIncrement={this.incrementItem}
+              items={this.state.items}/>
       </div>
     );
   }
