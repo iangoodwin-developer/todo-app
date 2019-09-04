@@ -30,7 +30,7 @@ class Item extends React.Component {
 
 	render() {
 		return (
-			<li className={`list-group-item ${this.props.completed ? "disabled" : " " }`}>
+			<li className={`list-group-item list-group-item-info ${this.props.completed ? "disabled" : " " }`}>
 				<div className="d-flex justify-content-between">
       		<p className="">{this.props.title}</p>
       		<div className="btn btn-group ">	
@@ -44,12 +44,17 @@ class Item extends React.Component {
 										onClick={this.handleItemDelete}>delete</button>
 					</div>		
     		</div>
+    	
 				<div className="badge badge-primary badge-pill">{this.props.step} / {this.props.steps} Steps</div>
-				
-				<div className={this.props.completed ? "shown" : "hidden"}>Finished</div>	
-				
-					
-				
+				<div className="progress mt-1">
+				  <div className={`progress-bar w-${this.props.step / 4 * 100}`} 
+				  		role="progressbar" 
+				  		aria-valuenow={this.props.step} 
+				  		aria-valuemin="0" 
+				  		aria-valuemax="100"></div>
+				</div>
+				<p className={`mt-1 ${this.props.completed ? " " : "hidden"}`}>Task complete</p>
+		
 			</li>
 		)
 	}  
