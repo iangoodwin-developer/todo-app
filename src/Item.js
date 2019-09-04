@@ -31,21 +31,23 @@ class Item extends React.Component {
 	render() {
 		return (
 			<li className={`list-group-item ${this.props.completed ? "disabled" : " " }`}>
-				<div className="d-flex w-100 justify-content-between">
+				<div className="d-flex justify-content-between">
       		<p className="">{this.props.title}</p>
-      		
+      		<div className="btn btn-group ">	
+      			<button className={`btn btn-primary shadow-none ${this.props.completed ? "disabled" : " " }`}
+										onClick={this.handleIncrement}>step forward</button>
+
+						<button className={`btn btn-secondary shadow-none ${this.props.completed ? "disabled" : " " }`}
+										onClick={this.handleSetAsCompleted}>finish</button>
+						
+						<button className="btn btn-danger shadow-none" 
+										onClick={this.handleItemDelete}>delete</button>
+					</div>		
     		</div>
 				<div className="badge badge-primary badge-pill">{this.props.step} / {this.props.steps} Steps</div>
 				
 				<div className={this.props.completed ? "shown" : "hidden"}>Finished</div>	
-				<div className="btn btn-group ">	
-					<button className={`btn btn-secondary ${this.props.completed ? "hidden" : "shown" }`}
-									onClick={this.handleSetAsCompleted}>finish</button>
-					<button className={`btn btn-secondary ${this.props.completed ? "hidden" : "shown" }`}
-									onClick={this.handleIncrement}>step forward</button>
-					<button className="btn btn-secondary" 
-									onClick={this.handleItemDelete}>delete</button>
-				</div>		
+				
 					
 				
 			</li>

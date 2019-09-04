@@ -30,25 +30,35 @@ class Create extends React.Component {
 
   render() {
     return (
-      <form className="form-group" onSubmit={this.handleSubmit}>
-        <div className="">
-          <input className="form-control mt-5" 
-                onChange={this.handleTitleChange} 
-                name="title" 
-                type="text" 
-                value={this.state.title} 
-                placeholder="task name" />
-          <input className="form-control mt-5" 
-                onChange={this.handleStepsChange} 
-                name="steps" 
-                type="number" 
-                min={0} 
-                max={4} 
-                value={this.state.steps} 
-                placeholder="steps" />
-          <button type="submit" 
-                className="btn btn-primary mt-2">Add Task</button>
-        </div>
+      <form onSubmit={this.handleSubmit}>
+        <div className="form-group row">
+          <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
+          <div className="col-sm-10">
+            <input className="form-control mt-2" 
+                  id="title"
+                  onChange={this.handleTitleChange} 
+                  name="title" 
+                  type="text" 
+                  value={this.state.title} 
+                  placeholder="task name" />
+            </div> 
+        </div>   
+        <div className="form-group row">  
+          <label htmlFor="steps" className="col-sm-2 col-form-label">Steps</label> 
+          <div className="col-sm-10">      
+            <input className="form-control mt-1" 
+                  id="steps"
+                  onChange={this.handleStepsChange} 
+                  name="steps" 
+                  type="number" 
+                  min={0} 
+                  max={4} 
+                  value={this.state.steps} 
+                  placeholder="steps" />
+          </div>
+        </div> 
+        <button type="submit" 
+                className="btn btn-primary shadow-none mt-2">Add Task</button>
        
       </form>
     );

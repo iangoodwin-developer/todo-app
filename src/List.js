@@ -6,7 +6,7 @@ class List extends React.Component{
 
 	listElement(items) {
 		return (
-			<ul className="list-group">
+			<ul className="list-group mt-2">
 				{items}
 			</ul>
 		)
