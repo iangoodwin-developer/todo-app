@@ -13,12 +13,12 @@ class Item extends React.Component {
 		this.handleIncrement = this.handleIncrement.bind(this);
 	}
 
-	handleIncrement = (e) => {
+	handleIncrement(e) {
 		e.preventDefault()
 		this.props.onIncrement()
 	}
 
-	handleSetAsCompleted = (e) => {
+	handleSetAsCompleted(e) {
 		e.preventDefault()
 		this.props.onComplete()
 	}
