@@ -1,33 +1,28 @@
 import * as React from 'react';
 import Item from './Item';
 
-class List extends React.Component{
+function List(props) {
 
-
-	listElement(items) {
+	const listElement = (items) => {
 		return (
 			<ul className="list-group mt-2">
 				{items}
 			</ul>
 		)
 	}
-
-	render() {
-		const items = this.props.items.map((item, index) => 
+	const items = props.items.map((item, index) => 
 			<Item key={index} 
 					id={item.id} 
 					step={item.step} 
 					steps={item.steps} 
 					completed={item.completed} 
 					title={item.title} 
-					onDelete={this.props.onDelete(item.id)}
-					onComplete={this.props.onComplete(item.id)}
-					onIncrement={this.props.onIncrement(item.id)}	
+					onDelete={props.onDelete(item.id)}
+					onComplete={props.onComplete(item.id)}
+					onIncrement={props.onIncrement(item.id)}	
 			/>
 		)
-		return this.listElement(items)
-	}  
-  
+	return listElement(items)
 }
 
 
